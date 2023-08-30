@@ -17,7 +17,7 @@ const initialState = [
     item_id: 'item3',
     title: 'The Selfish Gene',
     author: 'Richard Dawkins',
-    category: 'Nonfiction',
+    category: 'Nonfictio',
   },
 ];
 
