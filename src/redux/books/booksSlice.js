@@ -1,20 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// No initial state for books
+export const API_ID = 'FVZlJvMt6nVeDc72v9Yr'; // Your API ID here
 
 export const addBook = createAsyncThunk(
   'books/addBook',
   async (book) => {
-    try {
-      const response = await axios.post(
-        'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/xcqxp6ZyT2iIOCHysGbE/books',
-        book,
-      );
-      return response.data;
-    } catch (e) {
-      throw new Error(e);
-    }
+    const response = await axios.post(
+      `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${API_ID}/books`,
+      book,
+    );
+    return response.data;
   },
 );
 
@@ -23,7 +19,7 @@ export const removeBook = createAsyncThunk(
   async (bookID) => {
     try {
       await axios.delete(
-        `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/xcqxp6ZyT2iIOCHysGbE/books/${bookID}`,
+        `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${API_ID}/books/${bookID}`,
       );
       return bookID;
     } catch (e) {
@@ -37,7 +33,7 @@ export const getBook = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/xcqxp6ZyT2iIOCHysGbE/books',
+        `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${API_ID}/books`,
       );
       return response.data;
     } catch (e) {
