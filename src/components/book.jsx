@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types'; // Import the prop-types library
 import { useDispatch } from 'react-redux';
 import { removeBook } from '../redux/books/booksSlice';
 
@@ -19,6 +19,7 @@ const Book = ({ book }) => {
   );
 };
 
+// Add prop type validation for the 'book' object
 Book.propTypes = {
   book: PropTypes.shape({
     item_id: PropTypes.string.isRequired,
