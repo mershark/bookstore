@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navigation = () => (
-  <nav>
-    <h2>Bookstore CMS</h2>
+  <nav className="headernav">
+    <h2 className="logo">Bookstore CMS</h2>
     <ul>
       <li>
-        <Link to="/">Books</Link>
+        <Link className="nav books" to="/">Books</Link>
       </li>
       <li>
-        <Link to="/authors">Authors</Link>
+        <Link className="nav category" to="/authors">Authors</Link>
       </li>
     </ul>
   </nav>
