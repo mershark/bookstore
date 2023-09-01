@@ -1,24 +1,33 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import Book from './book';
+import PropTypes from 'prop-types'; // Import the prop-types library
+import { useDispatch } from 'react-redux';
+import { removeBook, getBook } from '../redux/books/booksSlice';
 
-const BookList = ({ books, onDelete }) => (
-  <div className="book-list">
-    {books.map((book) => (
-      <Book key={book.item_id} book={book} onDelete={onDelete} />
-    ))}
-  </div>
-);
+const Book = ({
+  id, title, author, category,
+}) => {
+  const dispatch = useDispatch();
 
-BookList.propTypes = {
-  books: PropTypes.arrayOf(
-    PropTypes.shape({
-      item_id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      author: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  onDelete: PropTypes.func.isRequired,
+  const handleRemoveBook = () => {
+    dispatch(removeBook({ itemId: id }));
+    dispatch(getBook());
+  };
+
+  return (
+    <div className="book">
+      <h3>{title}</h3>
+      <p>{author}</p>
+      <p>{category}</p>
+      <button type="submit" onClick={handleRemoveBook}>Remove</button>
+    </div>
+  );
 };
 
-export default BookList;
+Book.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+};
+
+export default Book;

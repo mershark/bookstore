@@ -1,27 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addBook, removeBook } from '../redux/books/booksSlice';
 import BookForm from '../components/bookForm';
-import BookList from '../components/bookList';
+import { getBook, removeBook } from '../redux/books/booksSlice';
+import Book from '../components/book';
 
-const BooksPage = () => {
-  const books = useSelector((state) => state.books); // Get books from Redux store
+function BooksPage() {
   const dispatch = useDispatch();
 
-  const handleAddBook = (newBook) => {
-    dispatch(addBook(newBook)); // Dispatch the addBook action
+  useEffect(() => {
+    dispatch(getBook());
+  }, [dispatch]);
+
+  const { isLoading, isError, books } = useSelector((state) => state.books);
+  const loading = isLoading && <p>Books loading, please wait!</p>;
+  const error = isError && <p>Error loading books, please try again!</p>;
+
+  const handleRemoveBook = (bookId) => {
+    dispatch(removeBook(bookId));
   };
 
-  const handleDeleteBook = (bookId) => {
-    dispatch(removeBook(bookId)); // Dispatch the removeBook action with the book ID
-  };
+  const bookList = books.map((book) => (
+    <div key={book.item_id}>
+      <Book
+        bookTitle={book.title}
+        author={book.author}
+        bookId={book.item_id}
+        onClick={() => handleRemoveBook(book.item_id)}
+      />
+    </div>
+  ));
 
   return (
-    <div className="books-page">
-      <BookForm onAddBook={handleAddBook} />
-      <BookList books={books} onDelete={handleDeleteBook} />
+    <div>
+      {loading}
+      {error}
+      {bookList}
+      <BookForm />
     </div>
   );
-};
+}
 
 export default BooksPage;
