@@ -1,45 +1,58 @@
-import React, { useState } from 'react';
+import { nanoid } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { addBook } from '../redux/books/booksSlice';
 
-const BookForm = () => {
+function BookForm() {
+  const [values, setValues] = useState({
+    title: '',
+    author: '',
+  });
+
   const dispatch = useDispatch();
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (title && author) {
-      const newBook = {
-        title,
-        author,
-      };
-      dispatch(addBook(newBook));
-      setTitle('');
-      setAuthor('');
-    }
-  };
-
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  }
+  function handleSubmit() {
+    const newBook = {
+      item_id: nanoid(),
+      title: values.title,
+      author: values.author,
+      category: 'fiction',
+    };
+    dispatch(addBook(newBook));
+    setValues({
+      title: '',
+      author: '',
+    });
+  }
   return (
-    <div className="book-form">
-      <h2>Add a New Book</h2>
-      <form onSubmit={handleSubmit}>
+    <form>
+      <h2>ADD NEW BOOK</h2>
+      <div>
         <input
+          name="title"
           type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Book Title"
+          value={values.title}
+          onChange={handleChange}
         />
         <input
           type="text"
-          placeholder="Author"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
+          name="author"
+          placeholder="Book Author"
+          value={values.author}
+          onChange={handleChange}
         />
-        <button type="submit">Add Book</button>
-      </form>
-    </div>
+        <button type="button" onClick={handleSubmit}>
+          Add
+        </button>
+      </div>
+    </form>
   );
-};
-
+}
 export default BookForm;
