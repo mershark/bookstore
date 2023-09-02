@@ -32,9 +32,10 @@ function BookForm() {
   }
   return (
     <form>
-      <h2>ADD NEW BOOK</h2>
-      <div>
+      <h2 className="h2-add">ADD NEW BOOK</h2>
+      <div className="form-input">
         <input
+          className="title-input"
           name="title"
           type="text"
           placeholder="Book Title"
@@ -42,13 +43,14 @@ function BookForm() {
           onChange={handleChange}
         />
         <input
+          className="author-input"
           type="text"
           name="author"
           placeholder="Book Author"
           value={values.author}
           onChange={handleChange}
         />
-        <button type="button" onClick={handleSubmit}>
+        <button type="button" className="input-button" onClick={handleSubmit}>
           Add
         </button>
       </div>
