@@ -32,7 +32,7 @@ function BookForm() {
   }
   return (
     <form>
-      <h2>ADD NEW BOOK</h2>
+      <h2 className="h2-add">ADD NEW BOOK</h2>
       <div className="form-input">
         <input
           className="title-input"

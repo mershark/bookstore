@@ -8,10 +8,10 @@ const Navigation = () => (
       <div className="nav-container">
         <h2 className="logo">Bookstore CMS</h2>
         <div>
-          <Link className="nav books" to="/">Books</Link>
+          <Link className="nav books" to="/">BOOKS</Link>
         </div>
         <div>
-          <Link className="nav category" to="/category">Category</Link>
+          <Link className="nav category" to="/category">CATEGORY</Link>
         </div>
       </div>
     </nav>

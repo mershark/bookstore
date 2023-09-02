@@ -9,14 +9,14 @@ function Book({ bookTitle, author, onClick }) {
         <h2 className="book-title">{bookTitle}</h2>
         <p className="author">{author}</p>
         <div>
-          <button type="button" className="button comment">
-            comments
+          <button type="button" className="button-comment">
+            Comments
           </button>
           <button type="button" className="button" onClick={onClick}>
-            remove
+            Remove
           </button>
           <button type="button" className="button">
-            edit
+            Edit
           </button>
         </div>
       </div>
@@ -35,7 +35,7 @@ function Book({ bookTitle, author, onClick }) {
           <p className="chapter current">CURRENT CHAPTER</p>
           <p className="chapter number">Chapter 17</p>
           <button type="button" className="update">
-            update progress
+            UPDATE PROGRESS
           </button>
         </div>
       </div>
