@@ -33,9 +33,9 @@ function BookForm() {
   return (
     <form>
       <h2>ADD NEW BOOK</h2>
-      <div>
+      <div className="form-input">
         <input
-          className="title"
+          className="title-input"
           name="title"
           type="text"
           placeholder="Book Title"
@@ -43,7 +43,7 @@ function BookForm() {
           onChange={handleChange}
         />
         <input
-          className="author"
+          className="author-input"
           type="text"
           name="author"
           placeholder="Book Author"
